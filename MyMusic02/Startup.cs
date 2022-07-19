@@ -12,6 +12,7 @@ using MyMusic.Core.Models.Auth;
 using MyMusic.Core.Services;
 using MyMusic.Data;
 using MyMusic.Services;
+using MyMusic02.Extensions;
 using MyMusic02.Settings;
 
 namespace MyMusic.Api
@@ -58,6 +59,8 @@ namespace MyMusic.Api
 
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddAuth(jwtSettings);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,6 +79,10 @@ namespace MyMusic.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuth();
+
+            //further
 
             app.UseEndpoints(endpoints =>
             {
